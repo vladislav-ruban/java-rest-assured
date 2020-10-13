@@ -45,6 +45,18 @@ public class UserTest {
                 .and().body("userStatus", equalTo(userObject.getUserStatus()));
     }
 
+    @Test(priority = 2)
+    public void loginUserTest() {
+        given()
+                .contentType(ContentType.JSON)
+                .get("https://petstore.swagger.io/v2/user/login?username=" +
+                        userObject.getUsername() +
+                        "grandmasterbit&password=" +
+                        userObject.getPassword())
+                .then().assertThat()
+                .statusCode(200);
+    }
+
     @Test(priority = 3)
     public void deleteUserTest() {
         given()
